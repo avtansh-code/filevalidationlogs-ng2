@@ -1,0 +1,19 @@
+<div class="acc-view">
+<accordion [closeOthers]="oneAtATime">
+    <div *ngFor="let lname of list_names(); let i = index">
+        <accordion-group *ngIf="filedata[lname].length>0" 
+            #group class="accgrp {{lname}}">
+            <div accordion-heading 
+                    [ngStyle] = "labelStyle[i]">
+                <h4 [ngStyle] = "labelText[i]"><b>{{lname|uppercase}} ({{filedata[lname].length}})</b>
+                <i class="pull-right float-xs-right glyphicon"
+                [ngClass]="{'glyphicon-chevron-down': group?.isOpen, 'glyphicon-chevron-right': !group?.isOpen}"></i>
+                </h4>
+            </div>
+            <div [style.border] = "'1px solid'+listcolors[lname]"  class="acc-body">
+                <list-view [list]="filedata[lname]" [styling]="textStyle[i]"></list-view>
+            </div>
+        </accordion-group>
+    </div>
+</accordion>
+</div>

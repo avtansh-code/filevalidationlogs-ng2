@@ -1,0 +1,25 @@
+<div class="top_bar">
+    The file(s) contains 
+    <span *ngFor="let list of list_names(); let i = index"
+    [style.color] = "listcolor(list)">
+        <span *ngIf="total_count(list) > 0">
+            <b>{{total_count(list)}} {{list|lowercase}}</b>
+            <span *ngIf="i < list_names().length-1" class="and-text">
+                and
+            </span>
+        </span>
+    </span>
+    <p class="download" 
+        (click)="setupDownloadLink()" 
+        [style.display]="downloadIcon">
+            <span class="glyphicon glyphicon-download-alt"></span>
+    </p>
+</div>
+<md-tab-group>
+    <span *ngFor="let file of file_list(); let i=index">
+        <md-tab label={{file|uppercase}}
+            *ngIf="file_count(file) > 0">
+            <accordion-view [filedata]="filedata(file)"></accordion-view>
+        </md-tab>
+    </span>
+</md-tab-group>

@@ -1,29 +1,157 @@
-# README #
+# File Validation Logs
 
-This README would normally document whatever steps are necessary to get your application up and running.
 
-### What is this repository for? ###
+## About:
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+File Validation Logs is a resuable frontend component that is used for the display of errors, warnings and other such details about uploaded files that need to be shown to the user before they proceed further.
 
-### How do I get set up? ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+## Required External Dependecies
 
-### Contribution guidelines ###
+The following packages need to be installed and required in the project before the use of this component - this can be done by using cdn links, node modules paths, bower paths, etc.
 
-* Writing tests
-* Code review
-* Other guidelines
+	1. jquery - js file
+	2. bootstrap - js and css file
 
-### Who do I talk to? ###
+_**Note: These above mentioned dependencies need to be addded to the main html file of the user**_
 
-* Repo owner or admin
-* Other community or team contact
+The other dependencies have been mentioned in the package.json file. They will be installed while intalling the module.
+
+
+
+## Steps for Installation:
+
+1. Update npmrc config file
+
+	1.1 open npmrc file
+
+		vim ~/.npmrc
+
+	This needs to be done at the root folder
+	
+	1.2 add following lines to npmrc file for setting private and default npm registry
+
+		
+		registry=http://registry.npmjs.org/
+
+		@eluci:registry=http://54.245.179.143:81/
+		
+2. The package has required css files locally and hence for these css files to work the user needs to use a css loader in his project, if not already used.
+
+	The user can refer to the following link for browserify-css loader: https://github.com/cheton/browserify-css
+
+
+3. Install the package
+
+
+		npm install @eluci/filevalidationlogs-ng2 --save
+
+
+4. Require the package
+
+	
+		import { FileValidationLogs } from '@eluci/filevalidationlogs-ng2'
+
+
+	
+
+## Usage:
+
+
+	<file-tabs
+        [data]="sample_data"
+        [listcolors]="listcolors"
+        [labelsize]="'1.9em'" 
+        [textsize]="'1em'"
+        [download-icon]="'block'" 
+        [page-size]="5">
+    </file-tabs>
+
+
+
+
+## Sample Data
+
+    listcolors:object = {errors:"#EA4436",warnings:"#C27600"}
+
+
+	sample_data:object = {
+		"file 1": {
+			"errors": ["error1", "error2", "error3", "error4", "error5", "error6"],
+			"warnings": []
+		},
+		"file 2": {
+			"errors": ["error1", "error2", "error3", "error4"],
+			"warnings": ["warning1", "warning2", "warning3", "warning4"]
+		},
+		"file 3": {
+			"errors": ["error1", "error2", "error3"],
+			"warnings": ["warning1", "warning2", "warning3", "warning4", "warning5", "warning6"]
+		},
+		"file 4": {
+			"errors": [],
+			"warnings": [],
+		},
+		"file 5": {
+			"errors": [],
+			"warnings": ["warning1", "warning2", "warning3", "warning4", "warning5"]
+		},
+		"file 6": {
+			"errors": ["error1"],
+			"warnings": ["warning1"]
+		}
+	}
+
+
+The file name is the key to an object. Each object will have arrays of the details that the users wishes to display. Here we are using only two details warnings and errors but the user can display summary as well. It will also be in the same manner.
+
+**Note: All the objects in the JSON object should contain all the arrays. If the array does not have any entries associated to it for that particular file, then the list can be left empty, but it needs to be defined. For references please have a look at the above example.**
+
+## The customisations possible in the module
+
+
+**1. listcolors – it will be the color corresponding to each list in the given data**
+
+It will take an object as input. The keys will be the same as the names of the arrays in each object of the json data and the colors need to be input in the hex format. Default value is **black** for all the accordions.
+
+**e.g.**
+
+	listcolors = '{errors:"#EA4436",warnings:"#FBBD09"}'
+
+if the object has two arrays – errors and warnings
+
+
+**2. labelsize – the font size of the accordion label – text size**
+
+It will take values just like the font-size attribute of css.
+
+**e.g.**
+
+	labelsize = '1.9em'
+
+
+**3. textsize – the font size of the body of each accordion**
+
+It will take values just like the font-size attribute of css
+
+**e.g.**
+	
+	textsize = '1.2em'
+
+
+**4. download-icon – this is to set whether the user wishes to see the download icon or not**
+
+It takes in one of the two values – block(show icon) or none(hide icon). Default value is block, i.e. the download icon will be displayed by default.
+
+**e.g.**
+
+	download-icon = 'block'
+
+
+**5. page-size – this is for the pagination section. This defines the number of items per page when applying pagination.**
+
+It takes in a number as the input which depicts the item per page. Default value is 20.
+
+**e.g.**
+	
+	page-size = 5
