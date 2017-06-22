@@ -1,0 +1,49 @@
+
+:host /deep/ .mat-ink-bar{
+    height: 5px !important;
+    color: #4931B2 !important;
+}
+
+:host /deep/ .mat-tab-label-active{
+    background-color: #ffffff !important;
+    color: #4931B2 !important;
+}
+
+:host /deep/ .mat-tab-label{
+    font-weight: bold;
+    font-size: 1.2em;
+	min-width: 100px !important;
+}
+
+:host /deep/ .mat-raised-button{
+	min-width: 0px !important;
+	padding: 0px 5px !important;
+}
+
+.and-text{
+	color: #000;
+}
+
+.download{
+	float: right;
+	right:0;
+	top: 0;
+    cursor: pointer;
+	text-decoration: none !important;
+}
+ 
+.top_bar{
+	font-size: 1.5em;
+	padding: 0px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	font-weight: bold;
+}
+
+.download:focus{
+	outline: none !important;
+}
+
+.glyphicon{
+	margin: 0px !important;
+}
