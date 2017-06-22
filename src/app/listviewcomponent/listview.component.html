@@ -1,13 +1,14 @@
 <ul class="list-group">
     <div *ngFor="let list_item of list.slice(((currentPage-1)*itemsPerPage), 
         ((currentPage)*itemsPerPage)); let i=index" >
-    <li [ngStyle]="styling" class="listitem">
+    <li [ngStyle]="listStyling" class="listitem">
                 <div [innerHTML]="list_item"></div>
     </li>
     </div>  
 </ul>
 <div style="text-align:center">
-    <pagination [boundaryLinks]="true" 
+    <pagination class="pagination-sm"
+                [boundaryLinks]="false" 
                 [itemsPerPage]="itemsPerPage"
                 [totalItems]="totalItems"
                 [(ngModel)]="currentPage"

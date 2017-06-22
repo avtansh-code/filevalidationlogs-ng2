@@ -1,25 +1,42 @@
 <div class="top_bar">
-    The file(s) contains 
-    <span *ngFor="let list of list_names(); let i = index"
-    [style.color] = "listcolor(list)">
-        <span *ngIf="total_count(list) > 0">
-            <b>{{total_count(list)}} {{list|lowercase}}</b>
-            <span *ngIf="i < list_names().length-1" class="and-text">
-                and
+    <span *ngIf="customTitle === false">
+        The file(s) contains 
+        <span *ngFor="let list of listNames(); let i = index"
+        [style.color] = "listColor(list)">
+            <span *ngIf="totalCount(list) > 0">
+                <b>{{totalCount(list)}} {{list|lowercase}}</b>
+                <span *ngIf="i < listNames().length-1" class="and-text">
+                    and
+                </span>
             </span>
         </span>
     </span>
-    <p class="download" 
+    <span *ngIf="customTitle === true">
+        <span *ngIf="titleVisible === true" [innerHtml] = "title">
+        </span>
+        <span *ngIf="titleVisible === false">
+            &nbsp;
+        </span>
+    </span>
+    <span class="download" 
         (click)="setupDownloadLink()" 
         [style.display]="downloadIcon">
-            <span class="glyphicon glyphicon-download-alt"></span>
-    </p>
+        <span *ngIf="titleVisible === true">
+            <i class="zmdi zmdi-download zmdi-hc-2x"></i>
+        </span>
+        <span *ngIf="titleVisible === false">
+            <a md-raised-button>
+                    <b>&nbsp;Download Logs</b>
+                    <!--<i class="zmdi zmdi-download zmdi-hc-2x"></i>-->
+            </a>
+        </span>
+    </span>
 </div>
 <md-tab-group>
-    <span *ngFor="let file of file_list(); let i=index">
+    <span *ngFor="let file of fileList(); let i=index"  [attr.title]="'Tab name'">
         <md-tab label={{file|uppercase}}
-            *ngIf="file_count(file) > 0">
-            <accordion-view [filedata]="filedata(file)"></accordion-view>
+            *ngIf="fileCount(file) > 0">
+            <accordion-view [file-data]="fileData(file)"></accordion-view>
         </md-tab>
     </span>
 </md-tab-group>

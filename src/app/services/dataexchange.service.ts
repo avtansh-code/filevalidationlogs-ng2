@@ -2,71 +2,71 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class DataExchangeService{
-    private data: object;
-    private listcolors: object;
-    private labelsize: string;
-    private textsize: string;
-    private pagesize: number;
+    private _data: object;
+    private _listColors: object;
+    private _labelSize: string;
+    private _textSize: string;
+    private _pageSize: number;
 
     /**
      * @param  {object} data
      * @returns void
      * receives the data variable from the file-tabs component and stores it in the service
      */
-    public set Data(data:object){
-        this.data = data;
+    public set data(data:object){
+        this._data = data;
     }
     
     /**
      * @returns object
      * returns the saved data variable for its use in the other components
      */
-    public get Data(): object{
-        return this.data;
+    public get data(): object{
+        return this._data;
     }
 
     /**
-     * @param  {any} listcolor
+     * @param  {any} listColor
      * @returns void
-     * recives the listcolors object passed as argument to file-tabs and stores it in the service
+     * recives the list colors object passed as argument to file-tabs and stores it in the service
      */
-    public set listColors(listcolor: object){
-        this.listcolors = listcolor;
+    public set listColors(listColor: object){
+        this._listColors = listColor;
     }
 
     /**
      * @returns object
-     * returns the listcolors stored in the service to the compennets which need it
+     * returns the list colors stored in the service to the compennets which need it
      */
     public get listColors(): object{
-        return this.listcolors;
+        return this._listColors;
     }
     
     /**
-     * @param  {string} labelsize
+     * @param  {string} labelSize
      * @returns void
      * stores the label size inputted by the user to the file-tabs
      */
-    public set labelSize(labelsize: string){
-        this.labelsize = labelsize;
+    public set labelSize(labelSize: string){
+        this._labelSize = labelSize;
     }
 
     
     /**
      * @returns string
-     * returns the labelsize to the compenents which require it
+     * returns the label size to the compenents which require it
      */
     public get labelSize(): string{
-        return this.labelsize; 
+        return this._labelSize; 
     }
     
     /**
-     * @param  {string} textsize
+     * @param  {string} textSize
      * @returns void
-     * receives and stores the textsize input by the user in file-tabs
+     * receives and stores the text size input by the user in file-tabs
      */
-    public set textSize(textsize: string){
-        this.textsize = textsize;
+    public set textSize(textSize: string){
+        this._textSize = textSize;
     }
     
     /**
@@ -74,16 +74,16 @@ export class DataExchangeService{
      * returns the textsize to the components which require it
      */
     public get textSize(): string{
-        return this.textsize;
+        return this._textSize;
     }
     
     /**
-     * @param  {number} pagesize
+     * @param  {number} pageSize
      * @returns void
      * receives and stores the pagesize for pagination purposes
      */
-    public set pageSize(pagesize: number){
-        this.pagesize = pagesize;
+    public set pageSize(pageSize: number){
+        this._pageSize = pageSize;
     }
 
     /**
@@ -91,7 +91,7 @@ export class DataExchangeService{
      * returns the pagesize to the component where the list will be displayed
      */
     public get pageSize(): number{
-        return this.pagesize;
+        return this._pageSize;
     }
 
     /**
@@ -99,7 +99,7 @@ export class DataExchangeService{
      * returns the array containing the name of all the files whose logs are being displayed
      */
     public get fileList(): string[]{
-        return (Object.keys(this.data));
+        return (Object.keys(this._data));
     }
     
     /**
@@ -108,6 +108,6 @@ export class DataExchangeService{
      */
     public get listName(): string[]{
         const files:string[] = this.fileList;
-        return (Object.keys(this.data[files[0]]));
+        return (Object.keys(this._data[files[0]]));
     }
 }

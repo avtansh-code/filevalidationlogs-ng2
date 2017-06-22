@@ -35,7 +35,6 @@ package-lock.json
 npm-debug.log
 testem.log
 /typings
-.angular-cli.json
 .editorconfig
 
 # e2e

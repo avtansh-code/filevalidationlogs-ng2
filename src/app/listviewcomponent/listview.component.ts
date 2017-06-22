@@ -13,10 +13,9 @@ export class ListView implements OnInit{
     constructor(
         private dataexchangeservice: DataExchangeService,
         private datamanipulationservice: DataManipulationService,
-        // private sanitizer: DomSanitizer
     ){}
     @Input('list') list: string[];
-    @Input('styling') styling:any;
+    @Input('list-styling') listStyling:any;
     private totalItems:number;
     private currentPage:number;
     private itemsPerPage:number;
@@ -27,7 +26,4 @@ export class ListView implements OnInit{
         this.currentPage = 1;        
         this.maxSize = 5; 
     }
-    // private listitem(index: number):any {
-    //     return this.sanitizer.bypassSecurityTrustHtml(this.list[index]);
-    // }
 }

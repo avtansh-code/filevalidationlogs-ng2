@@ -1,6 +1,6 @@
 import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MaterialModule } from '@angular/material';
+import { MaterialModule} from '@angular/material';
 import { AccordionModule} from 'ngx-bootstrap/accordion';
 import { FormsModule } from '@angular/forms'
 import { PaginationModule } from 'ngx-bootstrap/pagination';

@@ -23,13 +23,11 @@ export class AccordionView implements OnInit{
         private datamanipulationservice: DataManipulationService
     ){}
     public oneAtATime: boolean = true;
-    private listcolors:any;
-    private labelsize:string;
-    private textsize:string;
+    private listColors:any;
     private labelText:object = [];
     private labelStyle:object = [];
     private textStyle:object = [];
-    @Input('filedata') filedata: object;
+    @Input('file-data') fileData: object;
 
     /**
      * @returns void
@@ -37,22 +35,18 @@ export class AccordionView implements OnInit{
      * some variables are given a value that have been stored in services
      */
     ngOnInit(): void {
-        this.listcolors = this.dataexchangeservice.listColors;
-        this.labelsize = this.dataexchangeservice.labelSize;
-        this.textsize = this.dataexchangeservice.textSize;
-        
-        this.datamanipulationservice.initializestyles();
-
-        this.labelText = this.datamanipulationservice.labeltext;
-        this.labelStyle = this.datamanipulationservice.labelstyle;
-        this.textStyle = this.datamanipulationservice.textstyle;
+        this.listColors = this.dataexchangeservice.listColors;
+        this.datamanipulationservice.initializeStyles();
+        this.labelText = this.datamanipulationservice.labelText;
+        this.labelStyle = this.datamanipulationservice.labelStyle;
+        this.textStyle = this.datamanipulationservice.textStyle;
     }
 
     /**
      * @returns string
      * returning the names of the lists that are present in the data
      */
-    private list_names():string[]{
+    private listNames():string[]{
         return this.dataexchangeservice.listName;
     }
 }

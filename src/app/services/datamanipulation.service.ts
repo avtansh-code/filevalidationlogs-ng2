@@ -6,23 +6,23 @@ export class DataManipulationService{
     constructor(
         private dataexchangeservice: DataExchangeService
     ){}
-    private labelText: any = [];
-    private labelStyle: any = [];
-    private textStyle: any = [];
+    private _labelText: any = [];
+    private _labelStyle: any = [];
+    private _textStyle: any = [];
 
     /**
      * @param  {string} list
      * @returns number
      * returns the total count of logs for a particular list in all the files
      */
-    public totalcount(list: string): number{
-        let totalCount:number = 0;
-        let data: any = this.dataexchangeservice.Data;
+    public totalCount(list: string): number{
+        let _totalCount:number = 0;
+        let data: any = this.dataexchangeservice.data;
         for (let file of this.dataexchangeservice.fileList) 
         {
-            totalCount = totalCount + data[file][list].length;
+            _totalCount = _totalCount + data[file][list].length;
         }
-        return totalCount;
+        return _totalCount;
     }
 
     
@@ -31,14 +31,14 @@ export class DataManipulationService{
      * @returns number
      * returns the no of logs for a particular file
      */
-    public filecount(file:string):number{
-        let fileCount:number = 0;
-        let data: any = this.dataexchangeservice.Data;
+    public fileCount(file:string):number{
+        let _fileCount:number = 0;
+        let data: any = this.dataexchangeservice.data;
         for (let list of this.dataexchangeservice.listName) 
         {
-            fileCount = fileCount + data[file][list].length;
+            _fileCount = _fileCount + data[file][list].length;
         }
-        return fileCount;
+        return _fileCount;
     }
 
     /**
@@ -50,14 +50,14 @@ export class DataManipulationService{
         /*Loops to build the logs file that has to be downloaded*/
         let logs:string = 'The file(s) contains';
         let length:number = this.dataexchangeservice.listName.length;
-        let data: any = this.dataexchangeservice.Data;
+        let data: any = this.dataexchangeservice.data;
         let count:number= 0;
 
         for(let list of this.dataexchangeservice.listName){
-            logs = `${logs}<b>${this.totalcount(list)} ${list} </b>`;
+            logs = `${logs} <b>${this.totalCount(list)} ${list} </b>`;
             if(count < length-1)
             {
-                logs = `${logs}and `;
+                logs = `${logs} and`;
             }
             count++;
         }
@@ -65,7 +65,7 @@ export class DataManipulationService{
         logs = `${logs}\n\n`;
         for (let file of this.dataexchangeservice.fileList) 
         {
-            if(this.filecount(file) > 0){
+            if(this.fileCount(file) > 0){
                 logs = `${logs}\t<h1>${file}</h1>\n\t<div>\n`;
                 for(let list of this.dataexchangeservice.listName)
                 {
@@ -89,7 +89,7 @@ export class DataManipulationService{
                 logs = `${logs}\t</div><br/><br/>\n`;
             }
         }
-        this.downloadaction(logs);	        
+        this.downloadAction(logs);	        
     }
 
     /**
@@ -99,7 +99,7 @@ export class DataManipulationService{
        It generates a temporary anchor tag that is used to download the required html file.
        And then it deletes that anchor tag once done.
      */
-    private downloadaction(logs:string):void{
+    private downloadAction(logs:string):void{
         let uri = 'data:text/html;charset=utf-8,' + encodeURIComponent(logs);
         let downloadLink = document.createElement("a");
         downloadLink.setAttribute("href", uri);
@@ -135,40 +135,21 @@ export class DataManipulationService{
      * This function is used to initialize the styling arrays(labelStyle, labelText, textStyle) 
        that are required to give the style to the label and the text that are present in ui
      */
-    public initializestyles():void{
+    public initializeStyles():void{
         let r,g,b;
         for(let count = 0; count<this.dataexchangeservice.listName.length; count++){
-            if(this.dataexchangeservice.listColors === undefined){
-                this.labelText[count] = {
-                    'color': '#000000',
-                    'font-size': this.dataexchangeservice.labelSize,
-                    'font-weight': 'bold'
-                }
-                this.textStyle[count] = {
-                    'font-size': this.dataexchangeservice.textSize,
-                    'color': '#000000'
-                }
-                r = this.hexToRgb('#000000').r;
-                g = this.hexToRgb('#000000').g;
-                b = this.hexToRgb('#000000').b;
-                this.labelStyle[count] = {
-                    'background-color': `rgba(${r},${g},${b},0.3)`,
-                    'border-bottom': `0.5px solid #000`
-                }
-                continue;	
-            }
-            this.labelText[count] = {
+            this._labelText[count] = {
                 'color': this.dataexchangeservice.listColors[this.dataexchangeservice.listName[count]],
                 'font-size': this.dataexchangeservice.labelSize
             }
-            this.textStyle[count] = {
+            this._textStyle[count] = {
                 'font-size': this.dataexchangeservice.textSize,
                 'color': this.dataexchangeservice.listColors[this.dataexchangeservice.listName[count]]
             }
             r = this.hexToRgb(this.dataexchangeservice.listColors[this.dataexchangeservice.listName[count]]).r;
             g = this.hexToRgb(this.dataexchangeservice.listColors[this.dataexchangeservice.listName[count]]).g;
             b = this.hexToRgb(this.dataexchangeservice.listColors[this.dataexchangeservice.listName[count]]).b;
-            this.labelStyle[count] = {
+            this._labelStyle[count] = {
                 'background-color': `rgba(${r},${g},${b},0.3)`,
                 'border': `0.5px solid ${this.dataexchangeservice.listColors[this.dataexchangeservice.listName[count]]}`,
                 'padding': '0 20px 0 20px'
@@ -180,8 +161,8 @@ export class DataManipulationService{
      * @returns any
      * returns the array which stores the styling for the text displayed(list)
      */
-    public get textstyle():any{
-        return this.textStyle;
+    public get textStyle():any{
+        return this._textStyle;
     }
 
     
@@ -189,8 +170,8 @@ export class DataManipulationService{
      * @returns any
      * returns the array which stores the styling for the label container
      */
-    public get labelstyle():any{
-        return this.labelStyle;
+    public get labelStyle():any{
+        return this._labelStyle;
     }
 
     
@@ -198,7 +179,7 @@ export class DataManipulationService{
      * @returns any
      * returns the array which stores the styling for the label text
      */
-    public get labeltext():any{
-        return this.labelText;
+    public get labelText():any{
+        return this._labelText;
     }
 }

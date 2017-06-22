@@ -14,21 +14,64 @@ export class FileTabs implements OnInit{
     private datamanipulationservice: DataManipulationService
   ){}
   @Input('data') data: object;
-  @Input('listcolors') listcolors: object;
-  @Input('labelsize') labelsize: string;
-  @Input('textsize') textsize: string;
+  @Input('list-colors') listColors: any;
+  @Input('label-size') labelSize: string;
+  @Input('text-size') textSize: string;
   @Input('download-icon') downloadIcon: string;
   @Input('page-size') pageSize: number;
+  @Input('title') title: string;
+
+  private customTitle: boolean = true;
+  private titleVisible: boolean = true;
   
   ngOnInit(): void{
-    this.dataexchangeservice.Data = this.data;
-    this.dataexchangeservice.labelSize = this.labelsize;
-    this.dataexchangeservice.listColors = this.listcolors;
+    
+    if(this.labelSize === undefined){
+        this.labelSize = "25px";
+    }
+
+    if(this.textSize === undefined){
+        this.textSize = "15px"
+    }
+
+    if(this.pageSize === undefined){
+        this.pageSize = 10;
+    }
+
+    if(this.downloadIcon === undefined){
+        this.downloadIcon = "block";
+    }
+
+    if(this.listColors === undefined){
+        let lists = Object.keys(this.data[Object.keys(this.data)[0]]);
+        let lColors: string = '{';
+        for(let list of lists){
+            lColors += `"${list}":"#000000",`;
+        }
+        lColors = lColors.slice(0, -1);
+        lColors += "}";
+        this.listColors = JSON.parse(lColors);
+    }
+
+    if(this.title === undefined){
+        this.customTitle = false;
+    }
+    else{
+        if(this.title === ""){
+            this.titleVisible = false;
+        }
+    }
+
+    console.log(this.titleVisible);
+
+    this.dataexchangeservice.data = this.data;
+    this.dataexchangeservice.labelSize = this.labelSize;
+    this.dataexchangeservice.listColors = this.listColors;
     this.dataexchangeservice.pageSize = this.pageSize;
-    this.dataexchangeservice.textSize = this.textsize;
+    this.dataexchangeservice.textSize = this.textSize;
   }
 
-  private file_list(): string[]{
+  private fileList(): string[]{
     return this.dataexchangeservice.fileList;
   }
 
@@ -37,7 +80,7 @@ export class FileTabs implements OnInit{
      * returns the names of all the lists present in the data
      * returned value called from fvlFacadeService
      */
-    public list_names():string[]{
+    public listNames():string[]{
         return this.dataexchangeservice.listName;
     } 
 
@@ -48,8 +91,8 @@ export class FileTabs implements OnInit{
      * returns the total count of the logs present in all the files for the passed listname
      * returned value called from fvlFacadeService
      */
-    public total_count(list:string):number{
-        return this.datamanipulationservice.totalcount(list);
+    public totalCount(list:string):number{
+        return this.datamanipulationservice.totalCount(list);
     }
 
     
@@ -59,8 +102,8 @@ export class FileTabs implements OnInit{
      * returns the count of the total logs given in the passed filename
      * returned value called from fvlFacadeService
      */
-    public file_count(file:string):number{
-        return this.datamanipulationservice.filecount(file);
+    public fileCount(file:string):number{
+        return this.datamanipulationservice.fileCount(file);
     }
 
     
@@ -69,8 +112,8 @@ export class FileTabs implements OnInit{
      * @returns string
      * returns the color associated to the passed list
      */
-    public listcolor(list:string):string{
-        return this.listcolors[list];
+    public listColor(list:string):string{
+        return this.listColors[list];
     }
 
     
@@ -79,7 +122,7 @@ export class FileTabs implements OnInit{
      * @returns any
      * returns the data for a particular file(the one passed as argument)
      */
-    public filedata(file:string):any{
+    public fileData(file:string):any{
         return this.data[file];
     }
 
