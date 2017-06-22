@@ -16,13 +16,13 @@ export class DataManipulationService{
      * returns the total count of logs for a particular list in all the files
      */
     public totalcount(list: string): number{
-        let t_count:number = 0;
+        let totalCount:number = 0;
         let data: any = this.dataexchangeservice.Data;
         for (let file of this.dataexchangeservice.fileList) 
         {
-            t_count = t_count + data[file][list].length;
+            totalCount = totalCount + data[file][list].length;
         }
-        return t_count;
+        return totalCount;
     }
 
     
@@ -32,13 +32,13 @@ export class DataManipulationService{
      * returns the no of logs for a particular file
      */
     public filecount(file:string):number{
-        let f_count:number = 0;
+        let fileCount:number = 0;
         let data: any = this.dataexchangeservice.Data;
         for (let list of this.dataexchangeservice.listName) 
         {
-            f_count = f_count + data[file][list].length;
+            fileCount = fileCount + data[file][list].length;
         }
-        return f_count;
+        return fileCount;
     }
 
     /**
