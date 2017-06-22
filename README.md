@@ -61,13 +61,13 @@ The other dependencies have been mentioned in the package.json file. They will b
 
 ```html
     <file-tabs
-        [data]="data"
-        [list-colors]="listcolors"
-        [label-size]="'1.9em'" 
-        [text-size]="'1em'"
-        [download-icon]="'block'" 
-        [page-size]="5"        
-        [title]="'File Validation Logs'">
+        [data] = "data"
+        [list-colors] = "listcolors"
+        [label-size] = "'1.9em'" 
+        [text-size] = "'1em'"
+        [download-icon] = "'block'" 
+        [page-size] = "5"        
+        [title] = "'File Validation Logs'">
     </file-tabs>
 ```
 
