@@ -5,6 +5,7 @@ import { AccordionModule} from 'ngx-bootstrap/accordion';
 import { FormsModule } from '@angular/forms'
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { NgForm } from '@angular/forms';
 import 'hammerjs';
 
 

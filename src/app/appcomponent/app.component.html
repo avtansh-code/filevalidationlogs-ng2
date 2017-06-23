@@ -4,7 +4,83 @@
         [list-colors]="listcolors"
         [label-size]="'1.9em'" 
         [text-size]="'1em'"
-        [download-icon]="'block'" 
-        [page-size]="5">
+        [download-icon]="icon" 
+        [page-size]="5"
+        *ngIf="header === 'default'">
     </file-tabs>
+
+    <file-tabs
+        [data]="data"
+        [list-colors]="listcolors"
+        [label-size]="'1.9em'" 
+        [text-size]="'1em'"
+        [download-icon]="icon" 
+        [page-size]="5"
+        [title] = "'File Validation Logs'"
+        *ngIf="header === 'custom'">
+    </file-tabs>
+
+    <file-tabs
+        [data]="data"
+        [list-colors]="listcolors"
+        [label-size]="'1.9em'" 
+        [text-size]="'1em'"
+        [download-icon]="icon" 
+        [page-size]="5"
+        [title] = "''"
+        *ngIf="header === 'none'">
+    </file-tabs>
+
+    <table class="table">
+        <tr>
+            <td>
+                <md-radio-group [(ngModel)]="header">
+                    <h4><b>Top Heading Toggle</b></h4>
+                    <md-radio-button value="default">Default Heading</md-radio-button><br/>
+                    <md-radio-button value="custom">Custom Heading</md-radio-button><br/>
+                    <md-radio-button value="none">No Top Heading</md-radio-button><br/>
+                </md-radio-group>
+            </td>
+            <td>
+                <md-radio-group [(ngModel)]="icon">
+                    <h4><b>Download Icon</b></h4>
+                    <md-radio-button value="block">Show Icon</md-radio-button><br/>
+                    <md-radio-button value="none">Hide Icon</md-radio-button><br/>
+                </md-radio-group>
+            </td>
+        </tr>
+        <tr>
+            <td  colspan="2">
+                <md-card>
+                    <code>
+                        &lt;file-tabs<br>
+                            &emsp;[data] = "data"<br>
+                            &emsp;[list-colors] = "listcolors"<br>
+                            &emsp;[label-size] = "labelsize" <br>
+                            &emsp;[text-size] = "'1em'"<br>
+                            <b>&emsp;[download-icon] = "'{{icon}}'"</b><br>
+                            &emsp;[page-size] = "5"
+                            <span *ngIf="header === 'custom'">
+                                <br>
+                                 <b>&emsp;[title]="'File Validation Logs'"</b>
+                            </span>
+                            <span *ngIf="header === 'none'">
+                                <br>
+                                 <b>&emsp;[title]="''"</b>
+                            </span>
+                            &gt;<br>
+                        &lt;/file-tabs&gt;<br>
+                    </code>
+                </md-card>
+            </td>
+        </tr>
+        <tr>
+            <td  colspan="2">
+                <md-card>
+                       <span>{{stringData}}</span>
+                </md-card>
+            </td>
+        </tr>
+    </table>
 </div>
+

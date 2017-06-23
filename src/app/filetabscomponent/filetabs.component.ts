@@ -62,8 +62,6 @@ export class FileTabs implements OnInit{
         }
     }
 
-    console.log(this.titleVisible);
-
     this.dataexchangeservice.data = this.data;
     this.dataexchangeservice.labelSize = this.labelSize;
     this.dataexchangeservice.listColors = this.listColors;
