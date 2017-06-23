@@ -1,4 +1,4 @@
-<div class="top_bar">
+<div class="top_bar" *ngIf="titleVisible === true">
     <span *ngIf="customTitle === false">
         The file(s) contains 
         <span *ngFor="let list of listNames(); let i = index"
@@ -11,32 +11,21 @@
             </span>
         </span>
     </span>
-    <span *ngIf="customTitle === true">
-        <span *ngIf="titleVisible === true" [innerHtml] = "title">
-        </span>
-        <span *ngIf="titleVisible === false">
-            &nbsp;
-        </span>
-    </span>
-    <span class="download" 
-        (click)="setupDownloadLink()" 
-        [style.display]="downloadIcon">
-        <span *ngIf="titleVisible === true">
-            <i class="zmdi zmdi-download zmdi-hc-2x"></i>
-        </span>
-        <span *ngIf="titleVisible === false">
-            <a md-raised-button>
-                    <b>&nbsp;Download Logs</b>
-                    <!--<i class="zmdi zmdi-download zmdi-hc-2x"></i>-->
-            </a>
-        </span>
+    <span *ngIf="customTitle === true" [innerHtml] = "title">
     </span>
 </div>
-<md-tab-group>
-    <span *ngFor="let file of fileList(); let i=index"  [attr.title]="'Tab name'">
-        <md-tab label={{file|uppercase}}
-            *ngIf="fileCount(file) > 0">
-            <accordion-view [file-data]="fileData(file)"></accordion-view>
-        </md-tab>
+<div class="tab-controller">
+    <span class="download">
+            <i class="zmdi zmdi-download zmdi-hc-3x"></i>
     </span>
-</md-tab-group>
+    <div class="filetabs">
+        <md-tab-group>
+            <span *ngFor="let file of fileList(); let i=index">
+                <md-tab label={{file|uppercase}}
+                    *ngIf="fileCount(file) > 0">
+                    <accordion-view [file-data]="fileData(file)"></accordion-view>
+                </md-tab>
+            </span>
+        </md-tab-group>
+    </div>
+</div>

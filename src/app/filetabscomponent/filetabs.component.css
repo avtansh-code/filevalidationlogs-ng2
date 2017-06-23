@@ -13,22 +13,43 @@
     font-weight: bold;
     font-size: 1.2em;
 	min-width: 100px !important;
+	max-width: 200px !important;
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; 
 }
 
 :host /deep/ .mat-raised-button{
 	min-width: 0px !important;
 	padding: 0px 5px !important;
 }
+:host /deep/ .mat-tab-header{
+	width: calc(100% - 30px);
+}
 
+:host /deep/ .mat-tab-body{
+	border-spacing: 0px;
+}
 .and-text{
 	color: #000;
 }
 
+.tab-controller{
+	margin-top: 30px;
+  	position: relative;
+}
+
 .download{
-	float: right;
 	right:0;
-	top: 0;
-    cursor: pointer;
+	top: 15px;
+	width: auto;
+	position:absolute;
+	
+}
+
+.download{
+	cursor: pointer;
+	z-index: 1000;
 	text-decoration: none !important;
 }
  
@@ -36,7 +57,6 @@
 	font-size: 1.5em;
 	padding: 0px;
 	margin-top: 30px;
-	margin-bottom: 30px;
 	font-weight: bold;
 }
 
