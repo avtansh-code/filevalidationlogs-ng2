@@ -135,6 +135,7 @@ It takes in a number as the input which depicts the item per page. Default value
 It takes in a string as the input. The inputted string will be the title of the module. If the attribute is not defined then it will displaying the default title - **The file contains x errors and y warnings**. The user can pass an empty string in case he wishes not to display any title.
 
 **e.g.**
+
 	[title]="'File Validation Logs'"
 
 
