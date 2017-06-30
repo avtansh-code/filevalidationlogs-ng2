@@ -22,7 +22,6 @@ export class FileTabs implements OnInit{
   @Input('title') title: string;
 
   private customTitle: boolean = true;
-  private titleVisible: boolean = true;
   
   ngOnInit(): void{
     
@@ -56,13 +55,6 @@ export class FileTabs implements OnInit{
     if(this.title === undefined){
         this.customTitle = false;
     }
-    else{
-        if(this.title === ""){
-            this.titleVisible = false;
-        }
-    }
-
-    console.log(this.titleVisible);
 
     this.dataexchangeservice.data = this.data;
     this.dataexchangeservice.labelSize = this.labelSize;

@@ -1,17 +1,5 @@
-<div class="top_bar" *ngIf="titleVisible === true">
-    <span *ngIf="customTitle === false">
-        The file(s) contains 
-        <span *ngFor="let list of listNames(); let i = index"
-        [style.color] = "listColor(list)">
-            <span *ngIf="totalCount(list) > 0">
-                <b>{{totalCount(list)}} {{list|lowercase}}</b>
-                <span *ngIf="i < listNames().length-1" class="and-text">
-                    and
-                </span>
-            </span>
-        </span>
-    </span>
-    <span *ngIf="customTitle === true" [innerHtml] = "title">
+<div class="top_bar" *ngIf="customTitle === true">
+    <span [innerHtml] = "title">
     </span>
 </div>
 <div class="tab-controller">
