@@ -6,8 +6,39 @@ import { DataManipulationService } from '../services/datamanipulation.service'
 
 @Component({
     selector: 'list-view',
-    templateUrl: './listview.component.html',
-    styleUrls: ['./listview.component.css']
+    template: 
+    `
+        <ul class="list-group">
+            <div *ngFor="let list_item of list.slice(((currentPage-1)*itemsPerPage), 
+                ((currentPage)*itemsPerPage)); let i=index" >
+                <li [ngStyle]="listStyling" class="listitem">
+                            <div [innerHTML]="list_item"></div>
+                </li>
+            </div>  
+        </ul>
+        <div style="text-align:center">
+            <pagination class="pagination-sm"
+                        [boundaryLinks]="false" 
+                        [itemsPerPage]="itemsPerPage"
+                        [totalItems]="totalItems"
+                        [(ngModel)]="currentPage"
+                        [maxSize]="maxSize"
+                        [rotate]="'false'"
+                        [previousText]="'&lsaquo;'" 
+                        [nextText]="'&rsaquo;'" 
+                        [firstText]="'&laquo;'" 
+                        [lastText]="'&raquo;'"
+                        *ngIf="list.length > itemsPerPage">
+            </pagination>
+        </div>
+    `,
+    styles: [
+    `
+        .listitem{
+            padding-bottom: 3px;
+        }
+    `
+    ]
 })
 export class ListView implements OnInit{
     constructor(
