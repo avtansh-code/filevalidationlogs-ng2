@@ -1,11 +1,10 @@
-import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MaterialModule} from '@angular/material';
 import { AccordionModule} from 'ngx-bootstrap/accordion';
 import { FormsModule } from '@angular/forms'
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import 'hammerjs';
 
 
 import { FileTabs } from './filetabscomponent/filetabs.component';
@@ -23,12 +22,17 @@ import { DataManipulationService } from './services/datamanipulation.service';
     ListView
   ],
   imports: [
-    BrowserModule,
+    CommonModule,
     MaterialModule,
     BrowserAnimationsModule,
     AccordionModule.forRoot(),
     PaginationModule.forRoot(),
     FormsModule
+  ],
+  exports: [
+    FileTabs,
+    AccordionView,
+    ListView
   ],
   providers: [DataExchangeService, DataManipulationService]
 })
