@@ -52,7 +52,7 @@ The other dependencies have been mentioned in the package.json file. They will b
 4. Require the package
 
 	
-		import { FileValidationLogs } from '@eluci/filevalidationlogs-ng2'
+		import {FileValidationLogsModule} from '@eluci/filevalidationlogs-ng2'
 
 
 	
