@@ -5,15 +5,106 @@ import { DataManipulationService } from '../services/datamanipulation.service'
 
 @Component({
   selector: 'file-tabs',
-  styleUrls: ['./filetabs.component.css'],
-  templateUrl: './filetabs.component.html'
+  styles: [
+    `
+    :host /deep/ .mat-ink-bar{
+        height: 5px !important;
+        color: #4931B2 !important;
+    }
+
+    :host /deep/ .mat-tab-label-active{
+        background-color: #ffffff !important;
+        color: #4931B2 !important;
+    }
+
+    :host /deep/ .mat-tab-label{
+        font-weight: bold;
+        font-size: 1.2em;
+        min-width: 100px !important;
+        max-width: 200px !important;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis; 
+    }
+
+    :host /deep/ .mat-raised-button{
+        min-width: 0px !important;
+        padding: 0px 5px !important;
+    }
+    :host /deep/ .mat-tab-header{
+        width: calc(100% - 30px);
+    }
+
+    :host /deep/ .mat-tab-body{
+        border-spacing: 0px;
+    }
+    .and-text{
+        color: #000;
+    }
+
+    .tab-controller{
+        margin-top: 30px;
+        position: relative;
+    }
+
+    .download{
+        right:0;
+        top: 15px;
+        width: auto;
+        position:absolute;
+        
+    }
+
+    .download{
+        cursor: pointer;
+        z-index: 1000;
+        text-decoration: none !important;
+    }
+    
+    .top_bar{
+        font-size: 1.5em;
+        padding: 0px;
+        margin-top: 30px;
+        font-weight: bold;
+    }
+
+    .download:focus{
+        outline: none !important;
+    }
+
+    .glyphicon{
+        margin: 0px !important;
+    }
+    `
+  ],
+  template: `
+    <div class="top_bar" *ngIf="customTitle === true">
+        <span [innerHtml] = "title">
+        </span>
+    </div>
+    <div class="tab-controller">
+        <span class="download" (click)="setupDownloadLink()" [style.display]="downloadIcon">
+            <i class="zmdi zmdi-download zmdi-hc-3x"></i>
+        </span>
+        <div class="filetabs">
+            <md-tab-group>
+                <span *ngFor="let file of fileList(); let i=index">
+                    <md-tab label={{file|uppercase}}
+                        *ngIf="fileCount(file) > 0">
+                        <accordion-view [file-data]="fileData(file)"></accordion-view>
+                    </md-tab>
+                </span>
+            </md-tab-group>
+        </div>
+    </div>
+  `
 })
 export class FileTabs implements OnInit{
   constructor(
     private dataexchangeservice: DataExchangeService,
     private datamanipulationservice: DataManipulationService
   ){}
-  @Input('data') data: object;
+  @Input('data') data: any;
   @Input('list-colors') listColors: any;
   @Input('label-size') labelSize: string;
   @Input('text-size') textSize: string;

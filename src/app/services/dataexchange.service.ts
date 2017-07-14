@@ -2,43 +2,43 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class DataExchangeService{
-    private _data: object;
-    private _listColors: object;
+    private _data: any;
+    private _listColors: any;
     private _labelSize: string;
     private _textSize: string;
     private _pageSize: number;
 
     /**
-     * @param  {object} data
+     * @param  {any} data
      * @returns void
      * receives the data variable from the file-tabs component and stores it in the service
      */
-    public set data(data:object){
+    public set data(data: any){
         this._data = data;
     }
     
     /**
-     * @returns object
+     * @returns any
      * returns the saved data variable for its use in the other components
      */
-    public get data(): object{
+    public get data(): any{
         return this._data;
     }
 
     /**
      * @param  {any} listColor
      * @returns void
-     * recives the list colors object passed as argument to file-tabs and stores it in the service
+     * recives the list colors any passed as argument to file-tabs and stores it in the service
      */
-    public set listColors(listColor: object){
+    public set listColors(listColor: any){
         this._listColors = listColor;
     }
 
     /**
-     * @returns object
+     * @returns any
      * returns the list colors stored in the service to the compennets which need it
      */
-    public get listColors(): object{
+    public get listColors(): any{
         return this._listColors;
     }
     
