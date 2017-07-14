@@ -12,6 +12,6 @@ import { AppComponent } from './appcomponent/app.component';
   ],
   bootstrap: [AppComponent]
 })
-export class FileValidationLogs {
+export class AppModule {
 
  }
