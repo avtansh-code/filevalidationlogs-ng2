@@ -1,0 +1,19 @@
+<div class="top_bar" *ngIf="customTitle === true">
+    <span [innerHtml] = "title">
+    </span>
+</div>
+<div class="tab-controller">
+    <span class="download" (click)="setupDownloadLink()" [style.display]="downloadIcon">
+            <i class="zmdi zmdi-download zmdi-hc-3x"></i>
+    </span>
+    <div class="filetabs">
+        <md-tab-group>
+            <span *ngFor="let file of fileList(); let i=index">
+                <md-tab label={{file|uppercase}}
+                    *ngIf="fileCount(file) > 0">
+                    <accordion-view [file-data]="fileData(file)"></accordion-view>
+                </md-tab>
+            </span>
+        </md-tab-group>
+    </div>
+</div>

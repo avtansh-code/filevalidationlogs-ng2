@@ -1,0 +1,24 @@
+.acc-view{
+    margin-top: 30px;
+}
+
+:host /deep/ .panel{
+    margin-bottom:50px !important;
+    border-radius: 0 !important;
+    padding: 0px !important;
+}
+
+:host /deep/ .panel-heading{
+    padding:0px !important;
+    margin-top: -10px !important;
+    border-bottom: 0px !important;
+}
+
+:host /deep/ .panel-body{
+    padding: 0px !important;
+    border: 0px !important;
+}
+
+.acc-body{
+    padding: 2em 4.5em 0em 4.5em !important;
+}
